@@ -9,10 +9,10 @@ brew tap woodie/zouk
 brew install --cask zouk
 ```
 
-zouk isn't signed or notarized, so the first launch hits Gatekeeper --
-see the cask's `caveats` (shown after install) or
+zouk is signed and notarized, so it installs and launches with no
+Gatekeeper warning -- see
 [zouk's docs/DELIVERY.md](https://github.com/woodie/zouk/blob/main/docs/DELIVERY.md)
-for the "Open Anyway" steps.
+for details.
 
 ## Cutting a new cask version
 

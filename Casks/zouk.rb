@@ -7,8 +7,8 @@ cask "zouk" do
   # `version` used for both (the previous approach) builds a tag that
   # doesn't exist (v1.5 instead of v1.5.0) and 404s on download. Bump
   # both parts together whenever woodie/zouk cuts a new tagged release.
-  version "1.5.0,1.5"
-  sha256 "5a9c618f174823856584e3617e9aa6f9d838cd25fed4c34045fadc4ff1329d41"
+  version "1.6.0,1.6"
+  sha256 "REPLACE_WITH_V1.6.0_SHA256"
 
   url "https://github.com/woodie/zouk/releases/download/v#{version.before_comma}/zouk-#{version.after_comma}.zip"
   name "Zouk"
@@ -25,13 +25,9 @@ cask "zouk" do
 
   caveats do
     <<~EOS
-      zouk is not signed or notarized (see woodie/zouk's docs/DELIVERY.md).
-      Homebrew quarantines downloaded casks by default, so first launch will
-      hit Gatekeeper's "Apple could not verify this app is free of malware".
-      Either:
-        - System Settings -> Privacy & Security -> Open Anyway, after the
-          first blocked launch attempt, or
-        - reinstall with: brew install --cask zouk --no-quarantine
+      zouk is signed and notarized, so it installs and launches with no
+      Gatekeeper warning -- just the routine one-time "downloaded from
+      the Internet" notice macOS shows on any first launch.
     EOS
   end
 end
