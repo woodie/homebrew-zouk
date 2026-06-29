@@ -14,6 +14,18 @@ Gatekeeper warning -- see
 [zouk's docs/DELIVERY.md](https://github.com/woodie/zouk/blob/main/docs/DELIVERY.md)
 for details.
 
+## Upgrading
+
+```
+brew update
+brew upgrade --cask zouk
+```
+
+`brew upgrade` alone won't pick up a new version -- it checks against
+this tap's local clone, which only refreshes on `brew update`. Skipping
+that step either no-ops or, if a version bump just landed, fails with a
+checksum mismatch against the stale cached cask.
+
 ## Cutting a new cask version
 
 `Casks/zouk.rb`'s `version`/`sha256` only update when `woodie/zouk` ships a
