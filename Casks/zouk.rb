@@ -2,15 +2,15 @@ cask "zouk" do
   # Bump alongside Resources/Info.plist's CFBundleShortVersionString in
   # woodie/zouk -- the release workflow names the zip after that value, and
   # this url template assumes the tag and the zip name agree.
-  version "1.4"
-  sha256 "1c26621995e3cba88897d78d9c6a950572330800ae6af99e7d9e61758779f2d3"
+  version "1.5"
+  sha256 "5a9c618f174823856584e3617e9aa6f9d838cd25fed4c34045fadc4ff1329d41"
 
   url "https://github.com/woodie/zouk/releases/download/v#{version}/zouk-#{version}.zip"
   name "Zouk"
   desc "Native macOS client for browsing and downloading scans from lambada/scandalous"
   homepage "https://github.com/woodie/zouk"
 
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
 
   app "zouk.app"
 
