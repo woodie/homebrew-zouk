@@ -1,11 +1,16 @@
 cask "zouk" do
-  # Bump alongside Resources/Info.plist's CFBundleShortVersionString in
-  # woodie/zouk -- the release workflow names the zip after that value, and
-  # this url template assumes the tag and the zip name agree.
-  version "1.5"
+  # Compound version: before_comma is the git tag's full vX.Y.Z (e.g.
+  # v1.5.0 -- see existing tags in woodie/zouk for style), after_comma is
+  # Resources/Info.plist's CFBundleShortVersionString (e.g. 1.5), which is
+  # what `make package` names the zip after. These genuinely differ --
+  # tags are three-part semver, the zip name isn't -- so a single
+  # `version` used for both (the previous approach) builds a tag that
+  # doesn't exist (v1.5 instead of v1.5.0) and 404s on download. Bump
+  # both parts together whenever woodie/zouk cuts a new tagged release.
+  version "1.5.0,1.5"
   sha256 "5a9c618f174823856584e3617e9aa6f9d838cd25fed4c34045fadc4ff1329d41"
 
-  url "https://github.com/woodie/zouk/releases/download/v#{version}/zouk-#{version}.zip"
+  url "https://github.com/woodie/zouk/releases/download/v#{version.before_comma}/zouk-#{version.after_comma}.zip"
   name "Zouk"
   desc "Native macOS client for browsing and downloading scans from lambada/scandalous"
   homepage "https://github.com/woodie/zouk"

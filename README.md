@@ -18,5 +18,12 @@ for the "Open Anyway" steps.
 
 `Casks/zouk.rb`'s `version`/`sha256` only update when `woodie/zouk` ships a
 new tagged release (its `.github/workflows/release.yml` builds and attaches
-the zip; the sha256 lands in that workflow run's step summary). Bump both
-fields here to match, then commit and push.
+the zip; the sha256 lands in that workflow run's step summary).
+
+`version` is a compound value: the part before the comma is the git tag's
+full `vX.Y.Z` (e.g. `1.5.0`), the part after is
+`Resources/Info.plist`'s `CFBundleShortVersionString` (e.g. `1.5`), which
+is what `make package` names the zip after. They're genuinely different
+strings -- tags are three-part semver, the zip name isn't -- so both need
+bumping together, matching the new tag and the plist value it was cut
+from. Update `sha256` to match, then commit and push.
