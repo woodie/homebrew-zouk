@@ -1,0 +1,32 @@
+cask "zouk" do
+  # Bump alongside Resources/Info.plist's CFBundleShortVersionString in
+  # woodie/zouk -- the release workflow names the zip after that value, and
+  # this url template assumes the tag and the zip name agree.
+  version "1.4"
+  sha256 "1c26621995e3cba88897d78d9c6a950572330800ae6af99e7d9e61758779f2d3"
+
+  url "https://github.com/woodie/zouk/releases/download/v#{version}/zouk-#{version}.zip"
+  name "Zouk"
+  desc "Native macOS client for browsing and downloading scans from lambada/scandalous"
+  homepage "https://github.com/woodie/zouk"
+
+  depends_on macos: ">= :ventura"
+
+  app "zouk.app"
+
+  zap trash: [
+    "~/Library/Preferences/com.github.woodie.zouk.plist",
+  ]
+
+  caveats do
+    <<~EOS
+      zouk is not signed or notarized (see woodie/zouk's docs/DELIVERY.md).
+      Homebrew quarantines downloaded casks by default, so first launch will
+      hit Gatekeeper's "Apple could not verify this app is free of malware".
+      Either:
+        - System Settings -> Privacy & Security -> Open Anyway, after the
+          first blocked launch attempt, or
+        - reinstall with: brew install --cask zouk --no-quarantine
+    EOS
+  end
+end
