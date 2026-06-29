@@ -8,7 +8,7 @@ cask "zouk" do
   # doesn't exist (v1.5 instead of v1.5.0) and 404s on download. Bump
   # both parts together whenever woodie/zouk cuts a new tagged release.
   version "1.6.0,1.6"
-  sha256 "REPLACE_WITH_V1.6.0_SHA256"
+  sha256 "45cb09f3a78d269163938aeffb4f29da434217f137abf7d2a907c818a7c642b2"
 
   url "https://github.com/woodie/zouk/releases/download/v#{version.before_comma}/zouk-#{version.after_comma}.zip"
   name "Zouk"
