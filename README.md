@@ -1,7 +1,9 @@
 # homebrew-zouk
 
 [![Ruby](https://img.shields.io/badge/Ruby-3.1-red.svg)](https://www.ruby-lang.org/)
-[![License](https://img.shields.io/github/license/woodie/scandalous.svg)](LICENSE)
+[![CI](https://github.com/woodie/homebrew-zouk/actions/workflows/bump-cask.yml/badge.svg)](https://github.com/woodie/homebrew-zouk/actions/workflows/bump-cask.yml)
+[![Release](https://img.shields.io/github/v/release/woodie/homebrew-zouk.svg)](https://github.com/woodie/homebrew-zouk/releases/latest)
+[![License](https://img.shields.io/github/license/woodie/homebrew-zouk.svg)](LICENSE)
 
 Personal Homebrew tap for [zouk](https://github.com/woodie/zouk), a native
 macOS client for browsing and downloading scans from
