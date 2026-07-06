@@ -53,3 +53,17 @@ jobs:
             git tag "$tag"
             git push origin "$tag"
           fi
+
+      - name: Publish release
+        env:
+          # Default GITHUB_TOKEN is enough here -- this repo's own job
+          # permissions already grant contents: write, and gh release
+          # create only needs that.
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tag="${{ github.event.client_payload.tag }}"
+          if gh release view "$tag" >/dev/null 2>&1; then
+            echo "Release $tag already exists, skipping."
+          else
+            gh release create "$tag" --title "$tag" --generate-notes
+          fi
