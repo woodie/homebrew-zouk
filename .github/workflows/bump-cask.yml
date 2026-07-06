@@ -1,0 +1,55 @@
+name: Bump cask
+
+# Fired by woodie/zouk's release.yml (job "trigger-homebrew-bump") right
+# after a tagged release is built, signed, notarized, and published.
+# Payload carries everything needed to rewrite Casks/zouk.rb without this
+# workflow having to know anything about zouk's build process.
+on:
+  repository_dispatch:
+    types: [bump-cask]
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Bump cask version and sha256
+        env:
+          # tag: the pushed zouk tag, e.g. "v1.8.0" -- before_comma in the
+          # cask's compound version. short_version: e.g. "1.8", the
+          # after_comma half (matches Resources/Info.plist's
+          # CFBundleShortVersionString / the zip filename in woodie/zouk).
+          TAG: ${{ github.event.client_payload.tag }}
+          SHORT_VERSION: ${{ github.event.client_payload.short_version }}
+          SHA256: ${{ github.event.client_payload.sha256 }}
+        run: |
+          full_version="${TAG#v}"
+          sed -i -E "s/^  version \".*\"/  version \"${full_version},${SHORT_VERSION}\"/" Casks/zouk.rb
+          sed -i -E "s/^  sha256 \".*\"/  sha256 \"${SHA256}\"/" Casks/zouk.rb
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add Casks/zouk.rb
+          # Nothing to do if the cask already matches (e.g. a re-dispatch)
+          # -- avoid failing `git commit` on an empty diff.
+          git diff --cached --quiet && exit 0
+          git commit -m "Bump to ${{ github.event.client_payload.tag }}"
+          git push
+
+      - name: Tag
+        run: |
+          # Same tag name as the one pushed to zouk itself. Guarded against
+          # already existing so a re-dispatch doesn't fail on a duplicate.
+          tag="${{ github.event.client_payload.tag }}"
+          if git ls-remote --exit-code --tags origin "refs/tags/$tag" >/dev/null 2>&1; then
+            echo "Tag $tag already exists, skipping."
+          else
+            git tag "$tag"
+            git push origin "$tag"
+          fi
