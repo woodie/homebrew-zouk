@@ -2,7 +2,7 @@
 
 [![Ruby](https://img.shields.io/badge/Ruby-3.1-red.svg)](https://www.ruby-lang.org/)
 [![CI](https://github.com/woodie/homebrew-zouk/actions/workflows/bump-cask.yml/badge.svg)](https://github.com/woodie/homebrew-zouk/actions/workflows/bump-cask.yml)
-[![Release](https://img.shields.io/github/v/release/woodie/homebrew-zouk.svg)](https://github.com/woodie/homebrew-zouk/releases/latest)
+[![Release](https://img.shields.io/github/v/release/woodie/zouk.svg)](https://github.com/woodie/zouk/releases/latest)
 [![License](https://img.shields.io/github/license/woodie/homebrew-zouk.svg)](LICENSE)
 
 Personal Homebrew tap for [zouk](https://github.com/woodie/zouk), a native
