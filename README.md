@@ -1,5 +1,8 @@
 # homebrew-zouk
 
+[![Ruby](https://img.shields.io/badge/Ruby-3.1-red.svg)](https://www.ruby-lang.org/)
+[![License](https://img.shields.io/github/license/woodie/scandalous.svg)](LICENSE)
+
 Personal Homebrew tap for [zouk](https://github.com/woodie/zouk), a native
 macOS client for browsing and downloading scans from
 [lambada](https://github.com/woodie/lambada)/[scandalous](https://github.com/woodie/scandalous).
