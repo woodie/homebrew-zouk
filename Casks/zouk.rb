@@ -7,8 +7,8 @@ cask "zouk" do
   # `version` used for both (the previous approach) builds a tag that
   # doesn't exist (v1.5 instead of v1.5.0) and 404s on download. Bump
   # both parts together whenever woodie/zouk cuts a new tagged release.
-  version "1.8.1,1.8.1"
-  sha256 "d727c0202cf4f087967d708feb73b13cb425a554cbb90e66393a2c5f8a8dfdef"
+  version "1.9.0,1.9.0"
+  sha256 "66582d6866f515bb0e98d36cb8ec1af62a1afbfda767428321d53770a02a8692"
 
   url "https://github.com/woodie/zouk/releases/download/v#{version.before_comma}/zouk-#{version.after_comma}.zip"
   name "Zouk"
